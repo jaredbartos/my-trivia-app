@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${quicksand.className} antialiased bg-[url('/space-background.png')]`}
+        className={`${quicksand.className} antialiased bg-[url('/space-background.png')] bg-cover bg-center`}
       >
         {children}
       </body>
