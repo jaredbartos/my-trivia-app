@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { getCategories } from '@/app/lib/data';
+import { getCategories, getQuestions } from '@/app/lib/data';
 import QuestionForm from '@/app/ui/question-form';
 
 export default async function Home() {
@@ -12,7 +12,7 @@ export default async function Home() {
           Trivial Trivia
         </h1>
         <div className="justify-self-center">
-          <QuestionForm categories={categories} />
+          <QuestionForm categories={categories} getQuestions={getQuestions} />
         </div>
       </div>
     </main>

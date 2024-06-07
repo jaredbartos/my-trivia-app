@@ -7,8 +7,8 @@ const andadaPro = Andada_Pro({ subsets: ['latin'] });
 const quicksand = Quicksand({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'My Trivia App',
-  description: 'Brand New Trivia App'
+  title: 'Trivial Trivia',
+  description: 'Test your knowledge with Trivial Trivia!',
 };
 
 export default function RootLayout({
