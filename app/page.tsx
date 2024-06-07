@@ -1,16 +1,19 @@
 import Image from 'next/image';
 import { getCategories } from '@/app/lib/data';
-import { decode } from 'html-entities';
 import QuestionForm from '@/app/ui/question-form';
 
 export default async function Home() {
   const categories = await getCategories();
 
   return (
-    <main className="h-screen">
-      <div className="size-full flex justify-center items-center">
-        <h1 className="text-7xl text-orange-300">My Trivia App</h1>
-        <QuestionForm categories={categories} />
+    <main className="h-screen flex">
+      <div className="h-fit w-11/12 grid grid-cols-1 gap-y-8 self-center m-auto items-center">
+        <h1 className="text-7xl text-center justify-self-center text-cyan-300">
+          Trivial Trivia
+        </h1>
+        <div className="justify-self-center">
+          <QuestionForm categories={categories} />
+        </div>
       </div>
     </main>
   );
