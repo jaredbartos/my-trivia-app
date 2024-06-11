@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { getCategories, getQuestions } from '@/app/lib/data';
 import QuestionForm from '@/app/ui/question-form';
 
