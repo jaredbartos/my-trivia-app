@@ -1,6 +1,11 @@
 'use server';
 
-import type { Category, Difficulty, QuestionType } from '@/app/lib/definitions';
+import type {
+  Category,
+  Difficulty,
+  QuestionType,
+  Question
+} from '@/app/lib/definitions';
 
 export async function getCategories(): Promise<Category[]> {
   // Fetch the categories from the API
@@ -15,7 +20,7 @@ export async function getQuestions(
   category: string,
   difficulty: Difficulty,
   type: QuestionType
-) {
+): Promise<Question[]> {
   // Create a new URLSearchParams object
   const searchParams = new URLSearchParams();
 
@@ -32,5 +37,9 @@ export async function getQuestions(
   const data = await response.json();
   const { response_code, results } = data;
 
-  if (response_code === 0) console.log(results);
+  if (response_code !== 0) {
+    throw new Error('Failed to retrieve questions');
+  }
+
+  return results;
 }

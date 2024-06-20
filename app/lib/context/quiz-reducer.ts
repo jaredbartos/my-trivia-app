@@ -1,19 +1,19 @@
-import type { QuestionGroup } from '@/app/lib/definitions';
+import type {
+  QuestionGroup,
+  QuizState,
+  QuizAction
+} from '@/app/lib/definitions';
 
-export default function quizReducer(
-  state: null | QuestionGroup,
-  action: {
-    type: string;
-    questions?: QuestionGroup;
-    was_answered_correctly?: boolean;
-  }
-) {
+export const quizReducer = (
+  state: QuizState,
+  action: QuizAction
+): QuizState => {
   switch (action.type) {
     case 'SET_QUESTIONS': {
-      return action.questions;
+      if (action.questions) return action.questions;
     }
     default: {
       throw new Error(`Unknown action: ${action.type}`);
     }
   }
-}
+};

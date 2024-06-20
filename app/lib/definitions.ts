@@ -21,7 +21,7 @@ export type NumberedQuestion = {
   question: string;
   correct_answer: string;
   incorrect_answers: string[];
-  was_answered_correctly?: boolean;
+  chosen_answer?: boolean;
 };
 
 export type QuestionGroup = {
@@ -35,9 +35,17 @@ export type GetQuestionsFunction = (
   category: string,
   difficulty: Difficulty,
   type: QuestionType
-) => Promise<void>;
+) => Promise<Question[]>;
 
 // VARIABLE TYPES
 export type Difficulty = 'easy' | 'medium' | 'hard' | 'all';
 
 export type QuestionType = 'multiple' | 'boolean' | 'all';
+
+export type QuizState = null | QuestionGroup;
+
+export type QuizAction = {
+  type: string;
+  questions?: QuestionGroup;
+  chosen_answer?: string;
+}
