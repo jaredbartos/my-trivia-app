@@ -21,7 +21,7 @@ export default function RootLayout({
     <QuizProvider>
       <html lang="en">
         <body
-          className={`${quicksand.className} antialiased bg-[url('/space-background.png')] bg-cover bg-center`}
+          className={`${quicksand.className} antialiased bg-[url('/space-background.png')] bg-cover bg-no-repeat bg-center`}
         >
           {children}
         </body>

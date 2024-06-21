@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { useQuiz } from '@/app/lib/context/quiz-context';
 import { v4 as uuidv4 } from 'uuid';
 import { SET_QUESTIONS } from '@/app/lib/context/actions';
+import { useRouter } from 'next/navigation';
 
 export default function QuestionForm({
   categories,
@@ -30,6 +31,7 @@ export default function QuestionForm({
     type: 'all'
   });
   const [state, dispatch] = useQuiz();
+  const router = useRouter();
 
   const handleChange = (
     e:
@@ -75,6 +77,8 @@ export default function QuestionForm({
       const id = uuidv4();
       // Dispatch the questions to the context
       dispatch({ type: SET_QUESTIONS, questions: { id, questions } });
+      // Navigate to the quiz page
+      router.replace(`/quiz/${id}/question/1`);
     });
   };
 
