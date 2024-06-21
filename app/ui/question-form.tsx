@@ -7,6 +7,9 @@ import {
   QuestionType
 } from '@/app/lib/definitions';
 import { useState } from 'react';
+import { useQuiz } from '@/app/lib/context/quiz-context';
+import { v4 as uuidv4 } from 'uuid';
+import { SET_QUESTIONS } from '@/app/lib/context/actions';
 
 export default function QuestionForm({
   categories,
@@ -26,6 +29,7 @@ export default function QuestionForm({
     difficulty: 'all',
     type: 'all'
   });
+  const [state, dispatch] = useQuiz();
 
   const handleChange = (
     e:
@@ -62,7 +66,16 @@ export default function QuestionForm({
       formData.category,
       formData.difficulty,
       formData.type
-    );
+    ).then((data) => {
+      // Add an id to each question
+      const questions = data.map((question, index) => {
+        return { ...question, id: index + 1 };
+      });
+      // Generate a unique id for the group of questions
+      const id = uuidv4();
+      // Dispatch the questions to the context
+      dispatch({ type: SET_QUESTIONS, questions: { id, questions } });
+    });
   };
 
   return (

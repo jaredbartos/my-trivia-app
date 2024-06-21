@@ -1,0 +1,2 @@
+export const SET_QUESTIONS = 'SET_QUESTIONS';
+export const SET_CHOSEN_ANSWER = 'SET_CHOSEN_ANSWER';
