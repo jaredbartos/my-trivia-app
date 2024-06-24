@@ -78,7 +78,7 @@ export default function QuestionForm({
       // Dispatch the questions to the context
       dispatch({ type: SET_QUESTIONS, questions: { id, questions } });
       // Navigate to the quiz page
-      router.replace(`/quiz/${id}/question/1`);
+      router.push(`/quiz/${id}/question/1`);
     });
   };
 
@@ -96,9 +96,9 @@ export default function QuestionForm({
           id="amount"
           name="amount"
           min="1"
-          max="50"
+          max="40"
         />
-        <span className="inline ms-2">(Max: 50)</span>
+        <span className="inline ms-2">(Max: 40)</span>
       </div>
       <label htmlFor="category" className="mb-1 mt-4 text-xl">
         Category

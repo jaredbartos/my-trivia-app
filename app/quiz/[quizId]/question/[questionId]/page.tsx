@@ -17,8 +17,12 @@ export default function Page({
   }
 
   return (
-    <div>
-      <Question question={question} />
-    </div>
+    <main className="h-screen flex">
+      <div className="h-fit w-11/12 grid grid-cols-1 gap-y-8 self-center m-auto items-center">
+        <div className="justify-self-center">
+          <Question question={question} />
+        </div>
+      </div>
+    </main>
   );
 }

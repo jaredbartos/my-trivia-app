@@ -21,12 +21,19 @@ export type NumberedQuestion = {
   question: string;
   correct_answer: string;
   incorrect_answers: string[];
-  chosen_answer?: boolean;
+  chosen_answer?: string;
 };
 
 export type QuestionGroup = {
   id: string;
   questions: NumberedQuestion[];
+};
+
+export type QuizAction = {
+  type: string;
+  questions?: QuestionGroup;
+  chosen_answer?: string;
+  question_answered?: number;
 };
 
 // FUNCTION TYPES
@@ -43,9 +50,3 @@ export type Difficulty = 'easy' | 'medium' | 'hard' | 'all';
 export type QuestionType = 'multiple' | 'boolean' | 'all';
 
 export type QuizState = null | QuestionGroup;
-
-export type QuizAction = {
-  type: string;
-  questions?: QuestionGroup;
-  chosen_answer?: string;
-}
