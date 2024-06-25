@@ -12,10 +12,12 @@ export const quizReducer = (
     }
     case SET_CHOSEN_ANSWER: {
       if (state) {
-        // Find the question to be updated
-        let question;
+        // Copy questions array in state
+        const newQuestionsArray = [...state.questions];
+        // Find the index of the question to be updated
+        let questionIndex;
         if (action.question_answered) {
-          question = state.questions.find(
+          questionIndex = newQuestionsArray.findIndex(
             (q) => q.id === action.question_answered
           );
         } else {
@@ -23,23 +25,13 @@ export const quizReducer = (
         }
 
         // Update the question
-        let alteredQuestion;
-        if (action.chosen_answer) {
-          if (question) {
-            alteredQuestion = {
-              ...question,
-              chosen_answer: action.chosen_answer
-            };
-          } else {
-            throw new Error(
-              'Question could not be updated. question_answered value is likely not accurate.'
-            );
-          }
-        } else {
-          throw new Error('The chosen answer field was not provided');
-        }
+        newQuestionsArray[questionIndex] = {
+          ...newQuestionsArray[questionIndex],
+          chosen_answer: action.chosen_answer
+        };
 
-        return { ...state, questions: [...state.questions, alteredQuestion] };
+        // Return new state with updated question
+        return { ...state, questions: newQuestionsArray };
       }
 
       throw new Error('There are no questions to update');

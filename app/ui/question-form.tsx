@@ -71,7 +71,20 @@ export default function QuestionForm({
     ).then((data) => {
       // Add an id to each question
       const questions = data.map((question, index) => {
-        return { ...question, id: index + 1 };
+        // Store and shuffle all choices in one array
+        const allAnswers = [
+          ...question.incorrect_answers,
+          question.correct_answer
+        ];
+        // If true/false question
+        if (allAnswers.length === 2) {
+          // Display true first
+          allAnswers.sort().reverse();
+        } else {
+          // Randomize order of answers
+          allAnswers.sort(() => Math.random() - 0.5);
+        }
+        return { ...question, id: index + 1, all_answers: allAnswers };
       });
       // Generate a unique id for the group of questions
       const id = uuidv4();

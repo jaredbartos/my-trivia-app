@@ -21,6 +21,7 @@ export type NumberedQuestion = {
   question: string;
   correct_answer: string;
   incorrect_answers: string[];
+  all_answers: string[];
   chosen_answer?: string;
 };
 
